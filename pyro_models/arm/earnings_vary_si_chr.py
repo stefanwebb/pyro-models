@@ -49,8 +49,8 @@ def model(data, params):
     with pyro.plate('etas', 4):
         eta1 = pyro.sample('eta1', dist.Normal(10. * mu_a1, sigma_a1))
         eta2 = pyro.sample('eta2', dist.Normal(0.01 * mu_a2, sigma_a2))
-    a1 = 10 * mu_a1 + sigma_a1 * eta1;
-    a2 = 0.1 * mu_a2 + sigma_a2 * eta2;
+    a1 = 10 * mu_a1 + sigma_a1 * eta1
+    a2 = 0.1 * mu_a2 + sigma_a2 * eta2
     with pyro.plate('data', N):
         y_hat = a1[eth] + a2[eth] * height
         log_earn = pyro.sample("log_earn", dist.Normal(y_hat, sigma_y), obs=log_earn)
